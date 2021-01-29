@@ -9,7 +9,7 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     version: 6.5.x
 engine: gotpl
-home: https://github.com/skyoo2003/digdag-chart/tree/master
+home: https://github.com/skyoo2003/helm-charts/tree/master/charts/digdag
 icon: https://docs.digdag.io/_static/logo/logo-digdag-sq-tr.png
 keywords:
   - digdag

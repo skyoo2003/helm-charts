@@ -1,4 +1,4 @@
 chart-dirs:
   - charts
 chart-repos:
-  - digdag=https://skyoo2003.github.io/digdag-chart
+  - helm-charts=https://skyoo2003.github.io/helm-charts

@@ -16,20 +16,20 @@
 ## ref: https://hub.docker.com/r/szyn/docker-digdag/tags
 ##
 image:
-  repository: szyn/docker-digdag
+  repository: docker.io/szyn/docker-digdag
   tag: 0.9.42
   ## Specify a imagePullPolicy
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
   pullPolicy: IfNotPresent
-  command:
-    - server
-    - -c
-    - /opt/etc/digdag/server.properties
+  args:
+    - "server"
+    - "--config"
+    - "/opt/etc/digdag/server.properties"
 
 ## Number of Digdag replicas to deploy
 ##
-replicaCount: 1
+replicaCount: 3
 
 ## Update strategy, can be set to RollingUpdate or OnDelete by default.
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
@@ -193,7 +193,7 @@ configuration: |-
   database.maximumPoolSize=64
   database.user=digdag
   database.password=digdag
-  database.host=postgresql-postgresql-ha-pgpool
+  database.host=digdag-postgresql-ha-pgpool
   database.port=5432
   database.database=digdag_db
   database.ssl=false
@@ -262,3 +262,34 @@ metrics:
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 6
+
+postgresql-ha:
+  postgresql:
+    initdbScripts:
+      create-db.sql: |
+        CREATE USER digdag WITH PASSWORD 'digdag' SUPERUSER;
+        CREATE DATABASE digdag_db OWNER digdag;
+    maxConnections: 1024
+    replicaCount: 3
+
+  pgpool:
+    maxPool: 1
+    numInitChildren: 1024
+    logConnections: true
+    clientIdleLimit: 0
+    childLifeTime: 0
+    customUsers:
+      usernames: 'digdag'
+      passwords: 'digdag'
+    replicaCount: 2
+    configuration: |
+      debug_level=5
+      child_life_time=0
+      client_idle_limit=0
+      connection_cache=false
+      num_init_children=1024
+      max_pool=1
+
+  persistence:
+    enabled: true
+    size: 50Gi

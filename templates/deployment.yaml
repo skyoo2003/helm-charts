@@ -29,27 +29,18 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "digdag.serviceAccountName" . }}
-      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      securityContext: {{- omit .Values.podSecurityContext "enabled" | toYaml  | nindent 8 }}
       containers:
       - name: digdag
-        securityContext: {{- toYaml .Values.securityContext | nindent 12 }}
+        securityContext: {{- omit .Values.securityContext "enabled" | toYaml | nindent 12 }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- if .Values.image.command }}
-        command:
-          {{- toYaml .Values.image.command | nindent 10 }}
+        command: {{- toYaml .Values.image.command | nindent 10 }}
         {{- end }}
-        lifecycle:
-          {{- toYaml .Values.lifecycleHooks | nindent 10 }}
-        env:
-        - name: HOST_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-        - name: POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
+        {{- if .Values.image.args }}
+        args: {{- toYaml .Values.image.args | nindent 10 }}
+        {{- end }}
         ports:
         - name: http
           containerPort: 65432

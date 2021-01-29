@@ -2,7 +2,7 @@ apiVersion: v2
 name: digdag
 description: A Helm chart for digdag server
 type: application
-version: 0.0.1
+version: 0.0.2
 appVersion: 0.9.42
 dependencies:
   - name: postgresql-ha

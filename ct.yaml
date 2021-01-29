@@ -1,3 +1,5 @@
+chart-dirs:
+  - "."
 chart-repos:
   - digdag=https://skyoo2003.github.io/digdag-helm
 check-version-increment: true

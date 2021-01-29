@@ -1,0 +1,11 @@
+{{- if and .Values.metrics.enabled .Values.jmx.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "digdag.fullname" . }}-jmx-exporter
+  labels:
+    {{- include "digdag.labels" . | nindent 4 }}
+data:
+  config.yml: |-
+{{ tpl .Values.metrics.configuration . | indent 4 }}
+{{- end }}

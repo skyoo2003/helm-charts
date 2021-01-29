@@ -1,0 +1,21 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "digdag.fullname" . }}-metrics
+  labels:
+    {{- include "digdag.labels" . | nindent 4 }}
+  {{- with .Values.metrics.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: metrics
+      protocol: TCP
+      port: 9187
+      targetPort: metrics
+  selector:
+    {{- include "digdag.selectorLabels" . | nindent 4 }}
+{{- end }}

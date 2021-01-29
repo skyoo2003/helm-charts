@@ -1,0 +1,21 @@
+apiVersion: v2
+name: digdag
+description: A Helm chart for digdag server
+type: application
+version: 0.0.1
+appVersion: 0.9.42
+dependencies:
+  - name: postgresql-ha
+    repository: https://charts.bitnami.com/bitnami
+    version: 6.5.x
+engine: gotpl
+home: https://github.com/skyoo2003/digdag-chart/tree/master
+icon: https://docs.digdag.io/_static/logo/logo-digdag-sq-tr.png
+keywords:
+  - digdag
+  - workflow
+maintainers:
+  - name: Sung-Kyu Yoo
+    email: skyoo2003@gmail.com
+annotations:
+  category: Workflow

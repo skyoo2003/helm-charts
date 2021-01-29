@@ -1,0 +1,28 @@
+apiVersion: v1
+entries:
+  digdag:
+  - annotations:
+      category: Workflow
+    apiVersion: v2
+    appVersion: 0.9.42
+    created: "2021-01-29T16:59:52.119745621Z"
+    dependencies:
+    - name: postgresql-ha
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.5.x
+    description: A Helm chart for digdag server
+    digest: fd937215b8cc3b40625705d640b8b037008901017af018277b6ddfa52bc6546d
+    home: https://github.com/skyoo2003/digdag-chart/tree/master
+    icon: https://docs.digdag.io/_static/logo/logo-digdag-sq-tr.png
+    keywords:
+    - digdag
+    - workflow
+    maintainers:
+    - email: skyoo2003@gmail.com
+      name: Sung-Kyu Yoo
+    name: digdag
+    type: application
+    urls:
+    - https://github.com/skyoo2003/digdag-chart/releases/download/digdag-0.0.1/digdag-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-01-29T16:59:51.764640491Z"

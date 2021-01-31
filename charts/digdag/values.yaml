@@ -169,7 +169,7 @@ resources: {}
 
 livenessProbe:
   enabled: true
-  initialDelaySeconds: 60
+  initialDelaySeconds: 10
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
@@ -177,7 +177,7 @@ livenessProbe:
 
 readinessProbe:
   enabled: true
-  initialDelaySeconds: 60
+  initialDelaySeconds: 10
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
@@ -193,11 +193,11 @@ configuration: |-
   database.maximumPoolSize=64
   database.user=digdag
   database.password=digdag
-  database.host=digdag-postgresql-ha-pgpool
+  database.host={{ .Release.Name }}-postgresql-ha-pgpool
   database.port=5432
   database.database=digdag_db
   database.ssl=false
-  digdag.secret-encryption-key=YZ55MTuieXRlc3AocmFzZQ==
+  digdag.secret-encryption-key={{ randAlphaNum 16 | b64enc }}
   executor.task_ttl=10d
   executor.attempt_ttl=30d
 
@@ -263,7 +263,11 @@ metrics:
     successThreshold: 1
     failureThreshold: 6
 
+## Postgresql HA Subchart's values
+##
 postgresql-ha:
+  enabled: true
+
   postgresql:
     initdbScripts:
       create-db.sql: |
@@ -291,5 +295,21 @@ postgresql-ha:
       max_pool=1
 
   persistence:
-    enabled: true
-    size: 50Gi
+    enabled: false
+    size: 8Gi
+
+## Postgresql Subchart's values (without PGPool)
+##
+postgresql:
+  enabled: false
+
+  initdbScripts:
+    create-db.sql: |
+      CREATE USER digdag WITH PASSWORD 'digdag' SUPERUSER;
+      CREATE DATABASE digdag_db OWNER digdag;
+
+  postgresqlMaxConnections: 1024
+
+  persistence:
+    enabled: false
+    size: 8Gi

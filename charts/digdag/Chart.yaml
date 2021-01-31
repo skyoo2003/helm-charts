@@ -2,7 +2,7 @@ apiVersion: v2
 name: digdag
 description: A Helm chart for digdag server
 type: application
-version: 0.0.2
+version: 0.0.3
 appVersion: 0.9.42
 dependencies:
   - name: postgresql-ha
@@ -15,7 +15,7 @@ keywords:
   - digdag
   - workflow
 maintainers:
-  - name: Sung-Kyu Yoo
+  - name: skyoo2003
     email: skyoo2003@gmail.com
 annotations:
   category: Workflow

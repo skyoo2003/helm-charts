@@ -263,7 +263,11 @@ metrics:
     successThreshold: 1
     failureThreshold: 6
 
+## Postgresql HA Subchart's values
+##
 postgresql-ha:
+  enabled: true
+
   postgresql:
     initdbScripts:
       create-db.sql: |
@@ -289,6 +293,22 @@ postgresql-ha:
       connection_cache=false
       num_init_children=1024
       max_pool=1
+
+  persistence:
+    enabled: true
+    size: 50Gi
+
+## Postgresql Subchart's values (without PGPool)
+##
+postgresql:
+  enabled: false
+
+  initdbScripts:
+    create-db.sql: |
+      CREATE USER digdag WITH PASSWORD 'digdag' SUPERUSER;
+      CREATE DATABASE digdag_db OWNER digdag;
+
+  postgresqlMaxConnections: 1024
 
   persistence:
     enabled: true

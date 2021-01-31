@@ -1,0 +1,11 @@
+Digdag can be accessed via port {{ .Values.service.port }} on the following DNS name from within your cluster:
+
+  http://{{ include "digdag.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.port }}
+
+You can connect to the remote instance with the digdag CLI. To forward the API port to localhost:65432, run the following:
+
+  kubectl port-forward --namespace {{ .Release.Namespace }} $(kubectl get pods --namespace {{ .Release.Namespace }} -l app={{ include "digdag.fullname" . }} -o jsonpath='{ .items[0].metadata.name }') 65432:{{ .Values.service.port }}
+
+To view the logs for the Digdag pod, run the following:
+
+  kubectl logs -f --namespace {{ .Release.Namespace }} $(kubectl get pods --namespace {{ .Release.Namespace }} -l app={{ include "digdag.fullname" . }} -o jsonpath='{ .items[0].metadata.name }')

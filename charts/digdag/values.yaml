@@ -22,6 +22,7 @@ image:
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
   pullPolicy: IfNotPresent
+  # command:
   args:
     - "server"
     - "--config"
@@ -31,14 +32,11 @@ image:
 ##
 replicaCount: 3
 
-## Update strategy, can be set to RollingUpdate or OnDelete by default.
+## Update strategy to deploy
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 ##
 updateStrategy:
   type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 34%
-    maxSurge: 25%
 
 ## Duration in seconds a Digdag pod needs to terminate gracefully.
 ##
@@ -105,8 +103,6 @@ affinity: {}
 ## Digdag Service
 ##
 service:
-  enabled: true
-
   ## Digdag service type
   ##
   type: ClusterIP
@@ -264,6 +260,7 @@ metrics:
     failureThreshold: 6
 
 ## Postgresql HA Subchart's values
+## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha
 ##
 postgresql-ha:
   enabled: true
@@ -299,6 +296,7 @@ postgresql-ha:
     size: 8Gi
 
 ## Postgresql Subchart's values (without PGPool)
+## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql
 ##
 postgresql:
   enabled: false

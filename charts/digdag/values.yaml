@@ -295,8 +295,8 @@ postgresql-ha:
       max_pool=1
 
   persistence:
-    enabled: true
-    size: 50Gi
+    enabled: false
+    size: 8Gi
 
 ## Postgresql Subchart's values (without PGPool)
 ##
@@ -311,5 +311,5 @@ postgresql:
   postgresqlMaxConnections: 1024
 
   persistence:
-    enabled: true
-    size: 50Gi
+    enabled: false
+    size: 8Gi

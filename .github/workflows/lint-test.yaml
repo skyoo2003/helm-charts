@@ -53,7 +53,7 @@ jobs:
           fi
 
       - name: Run chart-testing (lint)
-        run: ct lint --config ct-lint.yaml --target-branch main
+        run: ct lint --target-branch main
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.0.0
@@ -63,4 +63,4 @@ jobs:
         run: kubectl create namespace ct
 
       - name: Run chart-testing (install)
-        run: ct install --config ct-install.yaml --target-branch main --namespace ct
+        run: ct install --target-branch main --namespace ct

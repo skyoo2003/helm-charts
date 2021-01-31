@@ -2,7 +2,6 @@ chart-dirs:
   - charts
 chart-repos:
   - helm-charts=https://skyoo2003.github.io/helm-charts
-debug: true
 check-version-increment: true
 validate-chart-schema: true
 validate-maintainers: true

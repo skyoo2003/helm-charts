@@ -26,6 +26,11 @@ jobs:
         with:
           python-version: 3.7
 
+      - name: Run kubeval
+        uses: mati92/helm-kubeval-action@master
+        with:
+          path: charts
+
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.0.1
 

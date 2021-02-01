@@ -1,0 +1,14 @@
+{{- if .Values.testFramework.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "digdag.fullname" . }}-test
+  labels:
+    {{- include "digdag.labels" . | nindent 4 }}
+data:
+  echo.dig: |-
+    timezone: UTC
+
+    +say_hello:
+      echo>: Hello world!
+{{- end }}

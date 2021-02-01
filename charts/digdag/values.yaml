@@ -30,7 +30,7 @@ image:
 
 ## Number of Digdag replicas to deploy
 ##
-replicaCount: 3
+replicaCount: 2
 
 ## Update strategy to deploy
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
@@ -109,7 +109,7 @@ service:
 
   ## Digdag service port number
   ##
-  port: 80
+  port: 65432
 
   ## Specify the nodePort value for the LoadBalancer and NodePort service types.
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
@@ -193,7 +193,7 @@ configuration: |-
   database.port=5432
   database.database=digdag_db
   database.ssl=false
-  digdag.secret-encryption-key={{ randAlphaNum 16 | b64enc }}
+  digdag.secret-encryption-key=MTZfYnl0ZXNfcGhyYXNlIQ==
   executor.task_ttl=10d
   executor.attempt_ttl=30d
 
@@ -233,8 +233,8 @@ metrics:
     enabled: false
     # Namespace for a ServiceMonitor resource (defaults to use the namespace this chart is deployed to)
     # namespace: monitoring
-    interval: 30s
-    scrapeTimeout: 30s
+    interval: 10s
+    scrapeTimeout: 10s
     # labels: {}
     #   prometheus: kube-prometheus
     annotations:
@@ -311,3 +311,6 @@ postgresql:
   persistence:
     enabled: false
     size: 8Gi
+
+testFramework:
+  enabled: false

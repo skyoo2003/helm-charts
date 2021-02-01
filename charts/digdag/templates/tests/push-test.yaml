@@ -1,0 +1,61 @@
+{{- if .Values.testFramework.enabled }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Release.Name }}-push-test"
+  labels:
+    {{- include "digdag.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: test
+spec:
+  {{- if .Values.podSecurityContext.enabled }}
+  securityContext: {{ omit .Values.podSecurityContext "enabled" | toYaml | nindent 4 }}
+  {{- end }}
+  initContainers:
+    - name: "{{ .Release.Name }}-copy-workflows"
+      image: "docker.io/busybox:1.33.0"
+      imagePullPolicy: "IfNotPresent"
+      command:
+        - "cp"
+        - "-LR"
+        - "/opt/etc/digdag/workflows/."
+        - "/opt/etc/digdag/project"
+      volumeMounts:
+        - name: digdag-workflows
+          mountPath: /opt/etc/digdag/workflows
+          readOnly: true
+        - name: digdag-project
+          mountPath: /opt/etc/digdag/project
+  containers:
+    - name: "{{ .Release.Name }}-push-test"
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+      {{- if .Values.securityContext.enabled }}
+      securityContext: {{ omit .Values.securityContext "enabled" | toYaml | nindent 8 }}
+      {{- end }}
+      env:
+        - name: DIGDAG_HOST
+          value: {{ include "digdag.fullname" . | quote }}
+        - name: DIGDAG_PORT
+          value: "65432"
+      args:
+        - "push"
+        - "testing"
+        - "-e"
+        - "http://$(DIGDAG_HOST):$(DIGDAG_PORT)"
+        - "--project"
+        - "/opt/etc/digdag/project"
+      volumeMounts:
+        - name: digdag-workflows
+          mountPath: /opt/etc/digdag/workflows
+          readOnly: true
+        - name: digdag-project
+          mountPath: /opt/etc/digdag/project
+  volumes:
+    - name: digdag-workflows
+      configMap:
+        name: {{ include "digdag.fullname" . }}-test
+    - name: digdag-project
+      emptyDir: {}
+  restartPolicy: Never
+{{- end }}

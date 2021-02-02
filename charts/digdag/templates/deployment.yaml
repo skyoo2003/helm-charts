@@ -81,7 +81,7 @@ spec:
         {{- if .Values.volumeMounts }}
           {{- toYaml .Values.volumeMounts | nindent 8 }}
         {{- end }}
-      {{- if .Values.metrics.enabled }}
+      {{- if and .Values.metrics.enabled .Values.jmx.enabled }}
       - name: metrics
         image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
         imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
@@ -125,9 +125,11 @@ spec:
       - name: digdag
         configMap:
           name: {{ include "digdag.fullname" .}}
+      {{- if and .Values.metrics.enabled .Values.jmx.enabled }}
       - name: jmx-exporter-config
         configMap:
           name: {{ include "digdag.fullname" . }}-jmx-exporter
+      {{- end }}
       {{- if .Values.volumes }}
         {{- toYaml .Values.volumes | nindent 6 }}
       {{- end }}

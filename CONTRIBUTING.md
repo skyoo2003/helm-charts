@@ -1,7 +1,7 @@
 # Contributing Guidelines
 
 Contributions are welcome via GitHub Pull Requests. This document outlines the process to help get your contribution accepted.
-Any type of contribution is welcome; from new features, bug fixes, documentation improvements or even [adding charts to the repository](#adding-a-new-chart-to-the-repository).
+Any type of contribution is welcome; from new features, bug fixes, documentation improvements or even adding charts to the repository.
 
 ## How to Contribute
 
@@ -28,9 +28,3 @@ When submitting a PR make sure that it:
 2. Changes are manually reviewed by owner(s).
 3. Once the changes are accepted, the PR is tested (if needed) into the CI pipeline, the chart is installed and tested (verification and functional tests) on top of different k8s platforms.
 4. When the PR passes all tests, the PR is merged by the reviewer(s) in the GitHub `main` branch.
-
-### Adding a new chart to the repository
-
-There are only three major requirements to add a new chart in our catalog:
-- The chart should use Bitnami based container images. If they don't exist, you can [open a GitHub issue](https://github.com/bitnami/charts/issues/new/choose) and we will work together to create them.
-- Use an [OSI approved license](https://opensource.org/licenses) for all the software.

@@ -42,6 +42,11 @@ updateStrategy:
 ##
 terminationGracePeriodSeconds: 30
 
+## Pod's host aliases
+## ref: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+##
+hostAliases: []
+
 ## Array to add volumes
 ##
 volumes: []

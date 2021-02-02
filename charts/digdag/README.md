@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-* Kubernetes >= 1.12
+* Kubernetes >= 1.15
 * Helm >= 3.1
 
 ## Install the chart

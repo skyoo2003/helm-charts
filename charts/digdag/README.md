@@ -47,6 +47,7 @@ The following table lists configurable parameters, their descriptions, and their
 | replicaCount | Number of Digdag replicas to deploy. | 3 |
 | updateStrategy | Update strategy to deploy. See [link](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) for details. | {"type": RollingUpdate} |
 | terminationGracePeriodSeconds | Duration in seconds a Digdag pod needs to terminate gracefully. | 30 |
+| hostAliases | Pod's host aliases (/etc/hosts) | [] |
 | volumes | Extra volumes | [] |
 | volumeMounts | Extra volume mounts | [] |
 | podAnnotations | Pod annotations. See [link](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) for details. | {} |
@@ -64,6 +65,7 @@ The following table lists configurable parameters, their descriptions, and their
 | readinessProbe | | |
 | configuration | | |
 | metrics | | |
+| pdb | Pod Disruption Budget configuration | {enabled: false, minAvailable: 1, annotations: {}} |
 | postgresql-ha | Postgresql HA Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha) for details. | |
 | postgresql | Postgresql Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) for details. | |
 | testFramework.enabled | For testing Helm charts | false |

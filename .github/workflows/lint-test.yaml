@@ -15,9 +15,10 @@ jobs:
           version: v3.5.1
 
       - name: Run kubeval
-        uses: desaintmartin/helm-kubeval-action@v1.0.2
+        uses: desaintmartin/helm-kubeval-action@master
         with:
           path: charts
+          config: config_repos
 
   lint-test:
     runs-on: ubuntu-latest

@@ -22,10 +22,10 @@
 
 ## Contributing
 
-We'd love to have you contribute! Please refer to our [contribution guidelines](CONTRIBUTING.md) for details.
+I'd love to have you contribute! Please refer to our [contribution guidelines](CONTRIBUTING.md) for details.
 
 ## [License](LICENSE)
 
 The MIT License
 
-Copyright (c) 2020-2021 Sung-Kyu Yoo
+Copyright (c) 2021 Sung-Kyu Yoo

@@ -1,0 +1,5 @@
+testFramework:
+  enabled: true
+
+autoscaling:
+  enabled: true

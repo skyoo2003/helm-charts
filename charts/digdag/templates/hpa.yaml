@@ -38,4 +38,8 @@ spec:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.memoryUtilization }}
     {{- end }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "digdag.fullname" . }}
 {{- end }}

@@ -264,6 +264,30 @@ metrics:
     successThreshold: 1
     failureThreshold: 6
 
+## Horizontal Pod Autoscaler configuration
+## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+##
+autoscaling:
+  enabled: false
+
+  ## Custom HPA scaling up/down rules
+  ## ref: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#hpascalingrules-v2beta2-autoscaling
+  # behavior:
+  #   scaleDown:
+  #   scaleUp:
+
+  ## Maximum number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
+  maxReplicas: 10
+
+  ## Minimum number of replicas to which the autoscaler can scale down.
+  minReplicas: 2
+
+  ## Target CPU utilization (%)
+  cpuUtilization: 50
+
+  ## Target Memory utilization (%)
+  memoryUtilization: 50
+
 ## Postgresql HA Subchart's values
 ## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha
 ##

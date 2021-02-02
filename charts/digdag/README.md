@@ -64,6 +64,7 @@ The following table lists configurable parameters, their descriptions, and their
 | readinessProbe | | |
 | configuration | | |
 | metrics | | |
+| autoscaling | Horizontal Pod Autoscaler configuration. | {enabled: false, maxReplicas: 10, minReplicas: 2, cpuUtilization: 50, memoryUtilization: 50} |
 | postgresql-ha | Postgresql HA Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha) for details. | |
 | postgresql | Postgresql Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) for details. | |
 | testFramework.enabled | For testing Helm charts | false |

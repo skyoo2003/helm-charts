@@ -1,0 +1,41 @@
+{{- if .Values.autoscaling.enabled }}
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "digdag.fullname" . }}
+  labels:
+    {{- include "digdag.labels" . | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.autoscaling.annotations | nindent 4}}
+spec:
+  {{- if .Values.autoscaling.behavior }}
+  behavior:
+    scaleDown:
+      {{- toYaml .Values.autoscaling.behavior.scaleDown | nindent 6 }}
+    scaleUp:
+      {{- toYaml .Values.autoscaling.behavior.scaleUp | nindent 6 }}
+  {{- end }}
+  {{- if .Values.autoscaling.maxReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  {{- end }}
+  {{- if .Values.autoscaling.minReplicas }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  {{- end }}
+  metrics:
+    {{- if .Values.autoscaling.cpuUtilization }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.cpuUtilization }}
+    {{- end }}
+    {{- if .Values.autoscaling.memoryUtilization }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.memoryUtilization }}
+    {{- end }}
+{{- end }}

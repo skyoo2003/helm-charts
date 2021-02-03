@@ -5,6 +5,35 @@ entries:
       category: Workflow
     apiVersion: v2
     appVersion: 0.9.42
+    created: "2021-02-03T06:53:31.917329289Z"
+    dependencies:
+    - condition: postgresql-ha.enabled
+      name: postgresql-ha
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.x
+    description: A Helm chart for Digdag
+    digest: 35c8003bd7661b557a24109cdbda96a1eb48d26c9710197e44b649e4593adf1c
+    home: https://github.com/skyoo2003/helm-charts/tree/master/charts/digdag
+    icon: https://docs.digdag.io/_static/logo/logo-digdag-sq-tr.png
+    keywords:
+    - digdag
+    - workflow
+    maintainers:
+    - email: skyoo2003@gmail.com
+      name: skyoo2003
+    name: digdag
+    type: application
+    urls:
+    - https://github.com/skyoo2003/helm-charts/releases/download/digdag-0.2.1/digdag-0.2.1.tgz
+    version: 0.2.1
+  - annotations:
+      category: Workflow
+    apiVersion: v2
+    appVersion: 0.9.42
     created: "2021-02-02T16:47:34.306295609Z"
     dependencies:
     - condition: postgresql-ha.enabled

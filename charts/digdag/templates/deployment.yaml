@@ -74,6 +74,10 @@ spec:
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
         {{- end }}
         resources: {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.envs }}
+        env:
+          {{- toYaml .Values.envs | nindent 12 }}
+        {{- end }}
         volumeMounts:
         - name: digdag
           mountPath: /opt/etc/digdag

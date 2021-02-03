@@ -55,6 +55,10 @@ volumes: []
 ##
 volumeMounts: []
 
+## Array to environment variables
+##
+envs: []
+
 ## Pod annotations
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##

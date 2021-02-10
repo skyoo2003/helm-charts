@@ -5,10 +5,8 @@ metadata:
   labels:
     {{- include "digdag.labels" . | nindent 4 }}
     app.kubernetes.io/component: digdag-migrator
-  annotations:
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
 spec:
+  ttlSecondsAfterFinished: 0
   template:
     metadata:
       labels:

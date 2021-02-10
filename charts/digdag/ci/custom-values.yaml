@@ -1,0 +1,16 @@
+testFramework:
+  enabled: true
+
+sidecars:
+  - name: busybox
+    image: busybox:1.33.0
+    imagePullPolicy: IfNotPresent
+    args:
+      - "echo"
+      - "Hello, World!"
+
+autoscaling:
+  enabled: true
+
+pdb:
+  enabled: true

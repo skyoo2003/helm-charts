@@ -51,6 +51,7 @@ The following table lists configurable parameters, their descriptions, and their
 | volumes | Extra volumes | [] |
 | volumeMounts | Extra volume mounts | [] |
 | envs | Extra environment variables | [] |
+| sidecars | Additional sidecar containers | [] |
 | podAnnotations | Pod annotations. See [link](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) for details. | {} |
 | podSecurityContext | Pod Security Context. See [link](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) for details. | {enabled: false, fsGroup: 1000} |
 | securityContext | Pod containers' Security Context. See [link](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container) for details. | {enabled: false, runAsNonRoot: true, runAsUser: 1000} |

@@ -207,6 +207,14 @@ configuration: |-
   executor.task_ttl=10d
   executor.attempt_ttl=30d
 
+## Additional sidecar containers
+##
+# sidecars:
+#   - name: container
+#     image: image
+#     imagePullPolicy: IfNotPresent
+sidecars: []
+
 ## InitContainer for waiting PostgreSQL is ready.
 ##
 waitForIt:

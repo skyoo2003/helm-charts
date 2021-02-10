@@ -174,7 +174,7 @@ resources: {}
 
 livenessProbe:
   enabled: true
-  initialDelaySeconds: 10
+  initialDelaySeconds: 60
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
@@ -182,7 +182,7 @@ livenessProbe:
 
 readinessProbe:
   enabled: true
-  initialDelaySeconds: 10
+  initialDelaySeconds: 60
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
@@ -202,9 +202,25 @@ configuration: |-
   database.port=5432
   database.database=digdag_db
   database.ssl=false
+  database.migrate=false
   digdag.secret-encryption-key=MTZfYnl0ZXNfcGhyYXNlIQ==
   executor.task_ttl=10d
   executor.attempt_ttl=30d
+
+## InitContainer for waiting PostgreSQL is ready.
+##
+waitForIt:
+  image:
+    repository: docker.io/willwill/wait-for-it
+    tag: latest
+    pullPolicy: Always
+    # command:
+    args:
+      - "--timeout=0"
+      - "{{ .Release.Name }}-postgresql-ha-pgpool:5432"
+      - "--"
+      - "echo"
+      - "PostgreSQL wait completed"
 
 metrics:
   enabled: false
@@ -318,29 +334,23 @@ postgresql-ha:
 
   postgresql:
     initdbScripts:
-      create-db.sql: |
+      create-db.sql: |-
         CREATE USER digdag WITH PASSWORD 'digdag' SUPERUSER;
         CREATE DATABASE digdag_db OWNER digdag;
-    maxConnections: 1024
-    replicaCount: 3
+    repmgrPassword: repmgr
+    maxConnections: 100
+    replicaCount: 2
 
   pgpool:
     maxPool: 1
-    numInitChildren: 1024
+    numInitChildren: 100
     logConnections: true
     clientIdleLimit: 0
     childLifeTime: 0
     customUsers:
-      usernames: 'digdag'
-      passwords: 'digdag'
+      usernames: digdag
+      passwords: digdag
     replicaCount: 2
-    configuration: |
-      debug_level=5
-      child_life_time=0
-      client_idle_limit=0
-      connection_cache=false
-      num_init_children=1024
-      max_pool=1
 
   persistence:
     enabled: false
@@ -353,11 +363,11 @@ postgresql:
   enabled: false
 
   initdbScripts:
-    create-db.sql: |
+    create-db.sql: |-
       CREATE USER digdag WITH PASSWORD 'digdag' SUPERUSER;
       CREATE DATABASE digdag_db OWNER digdag;
 
-  postgresqlMaxConnections: 1024
+  postgresqlMaxConnections: 100
 
   persistence:
     enabled: false

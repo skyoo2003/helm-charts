@@ -346,7 +346,7 @@ postgresql-ha:
         CREATE USER digdag WITH PASSWORD 'digdag' SUPERUSER;
         CREATE DATABASE digdag_db OWNER digdag;
     repmgrPassword: repmgr
-    maxConnections: 100
+    maxConnections: 120
     replicaCount: 2
 
   pgpool:

@@ -125,6 +125,9 @@ spec:
           mountPath: /opt/jmx_exporter/config.yml
           subPath: config.yml
       {{- end }}
+      {{- if .Values.sidecars }}
+        {{- tpl (toYaml .Values.sidecars | nindent 6) . }}
+      {{- end }}
       volumes:
       - name: digdag
         configMap:

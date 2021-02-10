@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "digdag.fullname" . }}-migrator
+  labels:
+    {{- include "digdag.labels" . | nindent 4 }}
+    app.kubernetes.io/component: digdag-migrator
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    metadata:
+      labels:
+        {{- include "digdag.labels" . | nindent 8 }}
+        app.kubernetes.io/component: digdag-migrator
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.podSecurityContext.enabled }}
+      securityContext: {{ omit .Values.podSecurityContext "enabled" | toYaml | nindent 4 }}
+      {{- end }}
+      restartPolicy: OnFailure
+      initContainers:
+      - name: wait-for-it
+        image: "{{ .Values.waitForIt.image.repository }}:{{ .Values.waitForIt.image.tag }}"
+        imagePullPolicy: {{ .Values.waitForIt.image.pullPolicy }}
+        {{- if .Values.waitForIt.image.command }}
+        command:
+          {{- tpl (toYaml .Values.waitForIt.image.command | nindent 10) . }}
+        {{- end }}
+        args: {{- tpl (toYaml .Values.waitForIt.image.args | nindent 10) . }}
+      containers:
+      - name: digdag-migrator
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        {{- if .Values.securityContext.enabled }}
+        securityContext: {{ omit .Values.securityContext "enabled" | toYaml | nindent 8 }}
+        {{- end }}
+        env:
+        - name: DIGDAG_HOST
+          value: {{ include "digdag.fullname" . | quote }}
+        - name: DIGDAG_PORT
+          value: "65432"
+        args:
+        - "migrate"
+        - "run"
+        - "--config"
+        - "/opt/etc/digdag/server.properties"
+        volumeMounts:
+        - name: digdag
+          mountPath: /opt/etc/digdag
+          readOnly: true
+      volumes:
+      - name: digdag
+        configMap:
+          name: {{ include "digdag.fullname" .}}

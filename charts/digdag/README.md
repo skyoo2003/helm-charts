@@ -63,10 +63,11 @@ The following table lists configurable parameters, their descriptions, and their
 | jmx | Digdag JMX configuration | |
 | ingress | Digdag Ingress | |
 | resources | Digdag resources | |
-| livenessProbe | | |
-| readinessProbe | | |
-| configuration | | |
-| metrics | | |
+| livenessProbe | The container's liveness probe configuration | {enabled: true, initialDelaySeconds: 60, periodSeconds: 10, timeoutSeconds: 5, successThreshold: 1, failureThreshold: 6} |
+| readinessProbe | The container's readiness probe configuration | {enabled: true, initialDelaySeconds: 60, periodSeconds: 10, timeoutSeconds: 5, successThreshold: 1, failureThreshold: 6} |
+| configuration | Digdag configuration | See the `values.yaml` file for details. |
+| waitForIt | InitContainer for waiting PostgreSQL is ready. | See the `values.yaml` file for details. |
+| metrics | Digdag jmx exporter configuration | See the `values.yaml` file for details. |
 | autoscaling | Horizontal Pod Autoscaler configuration. | {enabled: false, maxReplicas: 10, minReplicas: 2, cpuUtilization: 50, memoryUtilization: 50} |
 | pdb | Pod Disruption Budget configuration | {enabled: false, minAvailable: 1, annotations: {}} |
 | postgresql-ha | Postgresql HA Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha) for details. | |

@@ -42,6 +42,10 @@ updateStrategy:
 ##
 terminationGracePeriodSeconds: 30
 
+## Whether to share process namespace for pods
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/share-process-namespace/
+shareProcessNamespace: false
+
 ## Pod's host aliases
 ## ref: https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
 ##

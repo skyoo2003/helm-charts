@@ -47,6 +47,7 @@ The following table lists configurable parameters, their descriptions, and their
 | replicaCount | Number of Digdag replicas to deploy. | 3 |
 | updateStrategy | Update strategy to deploy. See [link](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) for details. | {type: RollingUpdate} |
 | terminationGracePeriodSeconds | Duration in seconds a Digdag pod needs to terminate gracefully. | 30 |
+| shareProcessNamespace | Whether to share process namespace for pods | false |
 | hostAliases | Pod's host aliases (/etc/hosts) | [] |
 | volumes | Extra volumes | [] |
 | volumeMounts | Extra volume mounts | [] |

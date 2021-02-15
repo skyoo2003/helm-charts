@@ -252,6 +252,8 @@ metrics:
       type: GAUGE
       value: $2
       help: "Digdag HikraiCP $1 $2"
+      attrNameSnakeCase: true
+
   resources: {}
     # limits:
     #   cpu: 100m
@@ -259,6 +261,7 @@ metrics:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
+
   serviceMonitor:
     ## If true, a ServiceMonitor CRD is created for a prometheus operator
     ## https://github.com/coreos/prometheus-operator
@@ -275,6 +278,28 @@ metrics:
       prometheus.io/port: "9187"
     relabelings: []
     metricRelabelings: []
+
+  ## PrometheusRule configuration
+  ## ref: https://github.com/coreos/prometheus-operator#customresourcedefinitions
+  ##
+  prometheusRule:
+    enabled: false
+    namespace: ""
+    ## PrometheusRule custom rules
+    ## ref: https://docs.openshift.com/container-platform/4.4/rest_api/monitoring_apis/prometheusrule-monitoring-coreos-com-v1.html
+    ##
+    rules:
+      - alert: TooManyConnections
+        expr: digdag_hikari_active_connections{service="{{ template "digdag.fullname" . }}"} / digdag_hikari_total_connections{service="{{ template "digdag.fullname" . }}"} > 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: Too many connections (instance {{ "{{ $labels.instance }}" }})
+          description: |-
+            Digdag instance has too many connections ratio (> 0.5)
+            VALUE = {{ "{{ $value }}" }}
+            LABELS = {{ "{{ $labels }}" }}
 
   livenessProbe:
     enabled: true

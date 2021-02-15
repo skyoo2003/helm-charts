@@ -1,6 +1,8 @@
 testFramework:
   enabled: true
 
+shareProcessNamespace: true
+
 autoscaling:
   enabled: true
 

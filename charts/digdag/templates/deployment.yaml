@@ -24,6 +24,9 @@ spec:
       {{- if .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- end }}
+      {{- if and .Values.shareProcessNamespace }}
+      shareProcessNamespace: {{ .Values.shareProcessNamespace }}
+      {{- end }}
       {{- if .Values.hostAliases }}
       hostAliases:
         {{- toYaml .Values.hostAliases | nindent 8 }}

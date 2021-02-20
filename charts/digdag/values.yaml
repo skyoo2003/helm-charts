@@ -98,6 +98,12 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+## Role-based access control (RBAC) configuration
+## ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+##
+rbac:
+  create: false
+
 ## Node labels for pod assignment
 ## ref: https://kubernetes.io/docs/user-guide/node-selection/
 #
@@ -346,8 +352,8 @@ autoscaling:
   memoryUtilization: 50
 
 ## Pod Disruption Budget
-### ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
-###
+## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+##
 pdb:
   enabled: false
 

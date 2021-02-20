@@ -57,6 +57,7 @@ The following table lists configurable parameters, their descriptions, and their
 | podSecurityContext | Pod Security Context. See [link](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) for details. | {enabled: false, fsGroup: 1000} |
 | securityContext | Pod containers' Security Context. See [link](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container) for details. | {enabled: false, runAsNonRoot: true, runAsUser: 1000} |
 | serviceAccount | Service account for Digdag to use. See [link](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) for details. | {create: false, annotations: {}, name: ""} |
+| rbac | Role-based access control (RBAC) configuration | {create: false} |
 | nodeSelector | Node labels for pod assignment. | |
 | tolerations | Tolerations for pod assignment | |
 | affinity | Affinity for pod assignment | |

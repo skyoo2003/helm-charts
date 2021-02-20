@@ -8,3 +8,6 @@ autoscaling:
 
 pdb:
   enabled: true
+
+rbac:
+  create: true

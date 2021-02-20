@@ -86,6 +86,12 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 1000
 
+## Role-based access control (RBAC) configuration
+## ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+##
+rbac:
+  enabled: false
+
 ## Service account for Digdag to use.
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 ##
@@ -321,8 +327,8 @@ autoscaling:
   memoryUtilization: 50
 
 ## Pod Disruption Budget
-### ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
-###
+## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+##
 pdb:
   enabled: false
 
@@ -337,6 +343,11 @@ pdb:
   ## Annotations to add to the pod disruption budget
   ##
   annotations: {}
+
+## Role Based Access Control
+## ref: https://kubernetes.io/docs/reference/access-authn-authz/rbac
+rbac:
+  create: false
 
 ## Postgresql HA Subchart's values
 ## ref: https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha

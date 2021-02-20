@@ -71,6 +71,7 @@ The following table lists configurable parameters, their descriptions, and their
 | metrics | Digdag jmx exporter configuration | See the `values.yaml` file for details. |
 | autoscaling | Horizontal Pod Autoscaler configuration. | {enabled: false, maxReplicas: 10, minReplicas: 2, cpuUtilization: 50, memoryUtilization: 50} |
 | pdb | Pod Disruption Budget configuration | {enabled: false, minAvailable: 1, annotations: {}} |
+| rbac | Role Based Access Control configuration | {create: false} |
 | postgresql-ha | Postgresql HA Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha) for details. | |
 | postgresql | Postgresql Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) for details. | |
 | testFramework.enabled | For testing Helm charts | false |

@@ -2,6 +2,58 @@ apiVersion: v1
 entries:
   digdag:
   - annotations:
+      artifacthub.io/changes: |
+        - Add artifacthub annotations
+        - Rename PDB enabled to create
+        - Support RBAC resources
+        - Support the PrometheusRule resource
+        - Support the shareProcessNamespace option
+        - Waiting for PostgreSQL and separate DB migration
+        - Support sidecar containers
+        - Support extra envs
+        - Support the HorizontalPodAutoscaler resource
+        - Support the PodDisruptionBudget resource
+        - Support the hostAliases option
+        - Support the bitnami/postgresql subchart
+        - Merge configmap files into one
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/images: |
+        - name: digdag
+          image: szyn/docker-digdag:0.9.42
+        - name: wait-for-it
+          image: willwill/wait-for-it:latest
+        - name: jmx-prometheus-exporter
+          image: sscaling/jmx-prometheus-exporter:0.12.0
+      artifacthub.io/license: MIT
+      category: Workflow
+    apiVersion: v2
+    appVersion: 0.9.42
+    created: "2021-02-20T14:08:39.223065528Z"
+    dependencies:
+    - condition: postgresql-ha.enabled
+      name: postgresql-ha
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.x
+    description: A Helm chart for Digdag
+    digest: b0017ba9c2b1e07622ea549ecff19c524466f3d1fef40e3ed3912e1640162066
+    home: https://github.com/skyoo2003/helm-charts/tree/main/charts/digdag
+    icon: https://docs.digdag.io/_static/logo/logo-digdag-sq-tr.png
+    keywords:
+    - digdag
+    - workflow
+    maintainers:
+    - email: skyoo2003@gmail.com
+      name: skyoo2003
+    name: digdag
+    type: application
+    urls:
+    - https://github.com/skyoo2003/helm-charts/releases/download/digdag-0.4.3/digdag-0.4.3.tgz
+    version: 0.4.3
+  - annotations:
       category: Workflow
     apiVersion: v2
     appVersion: 0.9.42
@@ -450,4 +502,4 @@ entries:
     urls:
     - https://github.com/skyoo2003/digdag-chart/releases/download/digdag-0.0.1/digdag-0.0.1.tgz
     version: 0.0.1
-generated: "2021-02-20T13:46:21.318442246Z"
+generated: "2021-02-20T14:08:39.223192329Z"

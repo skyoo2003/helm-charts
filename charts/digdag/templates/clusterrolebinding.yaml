@@ -8,6 +8,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: {{ include "digdag.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: {{ include "digdag.fullname" . }}

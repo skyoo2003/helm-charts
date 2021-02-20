@@ -71,7 +71,7 @@ The following table lists configurable parameters, their descriptions, and their
 | waitForIt | InitContainer for waiting PostgreSQL is ready. | See the `values.yaml` file for details. |
 | metrics | Digdag jmx exporter configuration | See the `values.yaml` file for details. |
 | autoscaling | Horizontal Pod Autoscaler configuration. | {enabled: false, maxReplicas: 10, minReplicas: 2, cpuUtilization: 50, memoryUtilization: 50} |
-| pdb | Pod Disruption Budget configuration | {enabled: false, minAvailable: 1, annotations: {}} |
+| pdb | Pod Disruption Budget configuration | {create: false, minAvailable: 1, annotations: {}} |
 | postgresql-ha | Postgresql HA Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql-ha) for details. | |
 | postgresql | Postgresql Subchart's configuration. See [link](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) for details. | |
 | testFramework.enabled | For testing Helm charts | false |

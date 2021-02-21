@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "digdag.labels" . | nindent 4 }}
 data:
-  server.properties: |-
+  digdag.properties: |-
 {{ tpl .Values.configuration . | indent 4 }}
 ---
 {{- if and .Values.metrics.enabled .Values.jmx.enabled }}

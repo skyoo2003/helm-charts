@@ -39,11 +39,11 @@ The following table lists configurable parameters, their descriptions, and their
 
 | Parameter | Description | Default |
 |---|---|---|
-| image.repository | Image repository url. | docker.io/szyn/docker-digdag |
-| image.tag | Image tag. | 0.9.42 |
+| image.repository | Image repository url. | ghcr.io/skyoo2003/digdag |
+| image.tag | Image tag. | 0.0.1 |
 | image.pullPolicy | Image pull policy. | IfNotPresent |
 | image.command | Image entrypoint. | nil |
-| image.args | Image entrypoint's arguments. | ["server", "--config", "/opt/etc/digdag/server.properties"] |
+| image.args | Image entrypoint's arguments. | ["server", "--config", "/digdag/config/digdag.properties"] |
 | replicaCount | Number of Digdag replicas to deploy. | 3 |
 | updateStrategy | Update strategy to deploy. See [link](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) for details. | {type: RollingUpdate} |
 | terminationGracePeriodSeconds | Duration in seconds a Digdag pod needs to terminate gracefully. | 30 |

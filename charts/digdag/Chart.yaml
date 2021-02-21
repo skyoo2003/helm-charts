@@ -2,8 +2,8 @@ apiVersion: v2
 name: digdag
 description: A Helm chart for Digdag
 type: application
-version: 0.4.3
-appVersion: 0.9.42
+version: 0.5.0
+appVersion: 0.10.0
 dependencies:
   - condition: postgresql-ha.enabled
     name: postgresql-ha
@@ -26,23 +26,11 @@ annotations:
   category: Workflow
   # https://artifacthub.io/docs/topics/annotations/helm/
   artifacthub.io/changes: |
-    - Add artifacthub annotations
-    - Rename PDB enabled to create
-    - Support RBAC resources
-    - Support the PrometheusRule resource
-    - Support the shareProcessNamespace option
-    - Waiting for PostgreSQL and separate DB migration
-    - Support sidecar containers
-    - Support extra envs
-    - Support the HorizontalPodAutoscaler resource
-    - Support the PodDisruptionBudget resource
-    - Support the hostAliases option
-    - Support the bitnami/postgresql subchart
-    - Merge configmap files into one
+    - Upgrade Digdag application version
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/images: |
     - name: digdag
-      image: szyn/docker-digdag:0.9.42
+      image: ghcr.io/skyoo2003/digdag:0.0.1
     - name: wait-for-it
       image: willwill/wait-for-it:latest
     - name: jmx-prometheus-exporter

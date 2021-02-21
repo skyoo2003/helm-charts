@@ -92,7 +92,7 @@ spec:
         {{- end }}
         volumeMounts:
         - name: digdag
-          mountPath: /opt/etc/digdag
+          mountPath: /digdag/config
           readOnly: true
         {{- if .Values.volumeMounts }}
           {{- toYaml .Values.volumeMounts | nindent 8 }}

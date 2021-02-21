@@ -16,8 +16,8 @@
 ## ref: https://hub.docker.com/r/szyn/docker-digdag/tags
 ##
 image:
-  repository: docker.io/szyn/docker-digdag
-  tag: 0.9.42
+  repository: ghcr.io/skyoo2003/digdag
+  tag: 0.0.1
   ## Specify a imagePullPolicy
   ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   ##
@@ -26,11 +26,11 @@ image:
   args:
     - "server"
     - "--config"
-    - "/opt/etc/digdag/server.properties"
+    - "/digdag/config/digdag.properties"
 
 ## Number of Digdag replicas to deploy
 ##
-replicaCount: 2
+replicaCount: 3
 
 ## Update strategy to deploy
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy

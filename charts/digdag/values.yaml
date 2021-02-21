@@ -30,7 +30,7 @@ image:
 
 ## Number of Digdag replicas to deploy
 ##
-replicaCount: 3
+replicaCount: 2
 
 ## Update strategy to deploy
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
@@ -244,8 +244,8 @@ metrics:
   enabled: false
 
   image:
-    repository: docker.io/sscaling/jmx-prometheus-exporter
-    tag: 0.12.0
+    repository: ghcr.io/skyoo2003/prometheus-jmx-exporter
+    tag: 0.0.1
     pullPolicy: IfNotPresent
 
   ## JMX exporter configuration

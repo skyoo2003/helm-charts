@@ -46,12 +46,12 @@ spec:
         - "migrate"
         - "run"
         - "--config"
-        - "/opt/etc/digdag/server.properties"
+        - "/digdag/config/digdag.properties"
         volumeMounts:
         - name: digdag
-          mountPath: /opt/etc/digdag
+          mountPath: /digdag/config
           readOnly: true
       volumes:
       - name: digdag
         configMap:
-          name: {{ include "digdag.fullname" .}}
+          name: {{ include "digdag.fullname" . }}

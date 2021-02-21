@@ -44,7 +44,7 @@ The following table lists configurable parameters, their descriptions, and their
 | image.pullPolicy | Image pull policy. | IfNotPresent |
 | image.command | Image entrypoint. | nil |
 | image.args | Image entrypoint's arguments. | ["server", "--config", "/digdag/config/digdag.properties"] |
-| replicaCount | Number of Digdag replicas to deploy. | 3 |
+| replicaCount | Number of Digdag replicas to deploy. | 2 |
 | updateStrategy | Update strategy to deploy. See [link](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) for details. | {type: RollingUpdate} |
 | terminationGracePeriodSeconds | Duration in seconds a Digdag pod needs to terminate gracefully. | 30 |
 | shareProcessNamespace | Whether to share process namespace for pods | false |

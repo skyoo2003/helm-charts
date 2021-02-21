@@ -2,7 +2,7 @@ apiVersion: v2
 name: digdag
 description: A Helm chart for Digdag
 type: application
-version: 0.5.0
+version: 0.5.1
 appVersion: 0.10.0
 dependencies:
   - condition: postgresql-ha.enabled
@@ -26,13 +26,15 @@ annotations:
   category: Workflow
   # https://artifacthub.io/docs/topics/annotations/helm/
   artifacthub.io/changes: |
-    - Upgrade Digdag application version
+    - Change prometheus jmx exporter image
+    - Fix job-migrator error
+    - Restore digdag replicaCount
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/images: |
     - name: digdag
       image: ghcr.io/skyoo2003/digdag:0.0.1
     - name: wait-for-it
       image: willwill/wait-for-it:latest
-    - name: jmx-prometheus-exporter
-      image: sscaling/jmx-prometheus-exporter:0.12.0
+    - name: prometheus-jmx-exporter
+      image: ghcr.io/skyoo2003/prometheus-jmx-exporter:0.0.1
   artifacthub.io/license: MIT

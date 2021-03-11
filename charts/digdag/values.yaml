@@ -229,9 +229,9 @@ sidecars: []
 ##
 waitForIt:
   image:
-    repository: docker.io/willwill/wait-for-it
-    tag: latest
-    pullPolicy: Always
+    repository: ghcr.io/skyoo2003/wait-for-it
+    tag: 0.0.1
+    pullPolicy: IfNotPresent
     # command:
     args:
       - "--timeout=0"

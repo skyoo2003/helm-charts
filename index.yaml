@@ -3,6 +3,46 @@ entries:
   digdag:
   - annotations:
       artifacthub.io/changes: |
+        - Change wait-for-it image
+      artifacthub.io/containsSecurityUpdates: "true"
+      artifacthub.io/images: |
+        - name: digdag
+          image: ghcr.io/skyoo2003/digdag:0.0.1
+        - name: wait-for-it
+          image: ghcr.io/skyoo2003/wait-for-it:0.0.1
+        - name: prometheus-jmx-exporter
+          image: ghcr.io/skyoo2003/prometheus-jmx-exporter:0.0.1
+      artifacthub.io/license: MIT
+      category: Workflow
+    apiVersion: v2
+    appVersion: 0.10.0
+    created: "2021-03-11T03:24:56.944359545Z"
+    dependencies:
+    - condition: postgresql-ha.enabled
+      name: postgresql-ha
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.2.x
+    description: A Helm chart for Digdag
+    digest: bb81af82b36222bc8da2e8936c19a7b62cb891e1bde6c2f154d05cb7f0ccbf77
+    home: https://github.com/skyoo2003/helm-charts/tree/main/charts/digdag
+    icon: https://docs.digdag.io/_static/logo/logo-digdag-sq-tr.png
+    keywords:
+    - digdag
+    - workflow
+    maintainers:
+    - email: skyoo2003@gmail.com
+      name: skyoo2003
+    name: digdag
+    type: application
+    urls:
+    - https://github.com/skyoo2003/helm-charts/releases/download/digdag-0.5.2/digdag-0.5.2.tgz
+    version: 0.5.2
+  - annotations:
+      artifacthub.io/changes: |
         - Change prometheus jmx exporter image
         - Fix job-migrator error
         - Restore digdag replicaCount
@@ -584,4 +624,4 @@ entries:
     urls:
     - https://github.com/skyoo2003/digdag-chart/releases/download/digdag-0.0.1/digdag-0.0.1.tgz
     version: 0.0.1
-generated: "2021-02-21T15:51:09.871066696Z"
+generated: "2021-03-11T03:24:56.944534557Z"

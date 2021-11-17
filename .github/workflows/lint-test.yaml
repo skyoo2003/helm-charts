@@ -38,7 +38,7 @@ jobs:
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
 
-      - uses: actions/setup-python@v2.2.2
+      - uses: actions/setup-python@v2.3.0
         with:
           python-version: 3.7
 
@@ -84,7 +84,7 @@ jobs:
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
 
-      - uses: actions/setup-python@v2.2.2
+      - uses: actions/setup-python@v2.3.0
         with:
           python-version: 3.7
 
